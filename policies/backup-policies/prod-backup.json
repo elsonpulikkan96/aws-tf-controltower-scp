@@ -1,0 +1,66 @@
+{
+  "plans": {
+    "ProdBackupPlan": {
+      "regions": {
+        "@@assign": [
+          "us-east-1",
+          "us-west-2"
+        ]
+      },
+      "rules": {
+        "DailyBackup": {
+          "schedule_expression": {
+            "@@assign": "cron(0 2 ? * * *)"
+          },
+          "start_backup_window_minutes": {
+            "@@assign": "60"
+          },
+          "complete_backup_window_minutes": {
+            "@@assign": "180"
+          },
+          "lifecycle": {
+            "delete_after_days": {
+              "@@assign": "90"
+            },
+            "move_to_cold_storage_after_days": {
+              "@@assign": "30"
+            }
+          },
+          "target_backup_vault_name": {
+            "@@assign": "Default"
+          },
+          "copy_actions": {
+            "arn:aws:backup:us-west-2:$account:backup-vault:Default": {
+              "lifecycle": {
+                "delete_after_days": {
+                  "@@assign": "90"
+                },
+                "move_to_cold_storage_after_days": {
+                  "@@assign": "30"
+                }
+              }
+            }
+          }
+        }
+      },
+      "selections": {
+        "tags": {
+          "ProdBackupSelection": {
+            "iam_role_arn": {
+              "@@assign": "arn:aws:iam::$account:role/service-role/AWSBackupDefaultServiceRole"
+            },
+            "tag_key": {
+              "@@assign": "Backup"
+            },
+            "tag_value": {
+              "@@assign": [
+                "daily",
+                "critical"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

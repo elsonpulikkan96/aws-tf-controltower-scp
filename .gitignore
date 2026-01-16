@@ -1,0 +1,36 @@
+# .gitignore
+
+# Terraform
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+*.tfvars.backup
+*.tfplan
+.terraform.lock.hcl
+
+# Sensitive files
+*.pem
+*.key
+*_rsa
+*_rsa.pub
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Logs
+*.log
+
+# Backup files
+*.backup
+*.bak
+
+# Keep example tfvars
+!terraform.tfvars.example

@@ -1,0 +1,65 @@
+{
+  "tags": {
+    "Environment": {
+      "tag_key": {
+        "@@assign": "Environment"
+      },
+      "tag_value": {
+        "@@assign": [
+          "dev",
+          "staging",
+          "prod"
+        ]
+      },
+      "enforced_for": {
+        "@@assign": [
+          "ec2:instance",
+          "ec2:volume",
+          "rds:db",
+          "s3:bucket",
+          "lambda:function",
+          "dynamodb:table"
+        ]
+      }
+    },
+    "Owner": {
+      "tag_key": {
+        "@@assign": "Owner"
+      },
+      "enforced_for": {
+        "@@assign": [
+          "ec2:instance",
+          "ec2:volume",
+          "rds:db",
+          "s3:bucket",
+          "lambda:function"
+        ]
+      }
+    },
+    "CostCenter": {
+      "tag_key": {
+        "@@assign": "CostCenter"
+      },
+      "enforced_for": {
+        "@@assign": [
+          "ec2:instance",
+          "rds:db",
+          "s3:bucket"
+        ]
+      }
+    },
+    "Project": {
+      "tag_key": {
+        "@@assign": "Project"
+      },
+      "enforced_for": {
+        "@@assign": [
+          "ec2:instance",
+          "rds:db",
+          "s3:bucket",
+          "lambda:function"
+        ]
+      }
+    }
+  }
+}
